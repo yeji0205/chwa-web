@@ -4,12 +4,14 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, useScroll, ScrollControls, Scroll, Image, Text } from '@react-three/drei';
 import logo from './logo.svg'
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import Gumbo from './gumbo.glb'
+import Plate from './plate.glb'
 
 import gsap from 'gsap';
 
 const Sausage_model = (props) => {
 
-  const { nodes, materials } = useGLTF("./gumbo.glb");
+  const { nodes, materials } = useGLTF(Gumbo);
   const scroll = useScroll()
 
   const ref = useRef()
@@ -219,7 +221,7 @@ useGLTF.preload("./gumbo.glb");
 
 
 const Plate_model = (props) => {
-  const { nodes, materials } = useGLTF("/plate.glb");
+  const { nodes, materials } = useGLTF(Plate);
   const plateRef = useRef()
   const tl = useRef()
   const scroll = useScroll()
