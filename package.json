@@ -2,7 +2,6 @@
   "name": "chwa_web",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://chwamarket.shop",
   "type": "module",
   "scripts": {
     "dev": "vite",

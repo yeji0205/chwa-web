@@ -2,10 +2,10 @@
 import { Suspense, useRef, useLayoutEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, useScroll, ScrollControls, Scroll, Image, Text } from '@react-three/drei';
-import logo from './logo.svg'
+import logo from '../../assets/logo.svg'
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import Gumbo from './gumbo.glb'
-import Plate from './plate.glb'
+import Gumbo from '../../assets/gumbo.glb'
+import Plate from '../../assets/plate.glb'
 
 import gsap from 'gsap';
 
