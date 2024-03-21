@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Reveal from './utils/Reveal';
+import axios from 'axios';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 
@@ -10,9 +11,10 @@ const Review = () => {
 	const [articles, setArticles] = useState([])
 
 	const fetchData = () => {
-		const apiUrl = '/v1/search/blog?query=' + encodeURI('주화시장 검보 맛집') + '&display=8';
+		// const apiUrl = '/v1/search/blog?query=' + encodeURI('주화시장 검보 맛집') + '&display=8';
+		const apiURL = '/v1/search/blog?query=' + encodeURI('주화시장 검보 맛집') + '&display=8'
 
-		return fetch(apiUrl, {
+		return fetch(apiURL, {
 					method: 'GET',
 					headers: {
 						'Content-Type':'application/json',

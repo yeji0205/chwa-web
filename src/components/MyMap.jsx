@@ -28,7 +28,7 @@ const MyMap = () => {
 					매월 마지막 주 월,화 정기휴무<br /><br />
 
 					<CallIcon fontSize='small'/><a href="tel:+82 507-0178-2871" className='hover:text-[#F13625]'> 0507-0178-2871</a><br />
-					<DeliveryDiningIcon /><a onClick={()=> window.open("https://l.instagram.com/?u=https%3A%2F%2Fbaemin.me%2FuUtvBbEXG&e=AT1asdG198pOyGmSsPRr5-mYZtD6Bv72R1k73uhN5zGLuE9RHwRHD1orfBatYiUsU18m6EqIkRPv_TMiB2TbJ_asTKQWcHyb")} className='hover:text-[#F13625] hover:cursor-pointer'> 배달의 민족</a>
+					<DeliveryDiningIcon /><a onClick={()=> window.open("https://baemin.me/uUtvBbEXG")} className='hover:text-[#F13625] hover:cursor-pointer'> 배달의 민족</a>
 					</p>
 				</div>
 			</div>

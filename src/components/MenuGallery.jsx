@@ -26,10 +26,10 @@ const MenuGallery = () => {
 	}, [zoom])
 
 	return (
-		<div id='menu' className='md:py-[15%]'>
+		<div id='menu' className='py-[15%]'>
 			<div className={zoom? 'zoom open' : 'zoom'}>
 					<img src={temImgSrc} />
-					<CloseIcon onClick={()=> setZoom(false)} />
+					<CloseIcon fontSize='small' onClick={()=> setZoom(false)} />
 			</div>
 		<Reveal>
 		<p className='text-xl font-bold text-center mb-[10%]'>메뉴 갤러리 <LocalDiningOutlinedIcon /></p>

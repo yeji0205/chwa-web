@@ -1,13 +1,14 @@
 /* eslint-disable react/no-unknown-property */
-import { Suspense, useRef, useLayoutEffect } from 'react';
+import React, { Suspense, useRef, useLayoutEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, useScroll, ScrollControls, Scroll, Image, Text } from '@react-three/drei';
 import logo from '../../assets/logo.svg'
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import Gumbo from '../../assets/gumbo.glb'
 import Plate from '../../assets/plate.glb'
-
+import Font from '../../font/dovemayo.otf'
 import gsap from 'gsap';
+
 
 const Sausage_model = (props) => {
 
@@ -217,7 +218,7 @@ const Sausage_model = (props) => {
     </group>
   );
 }
-useGLTF.preload("./gumbo.glb");
+useGLTF.preload(Gumbo);
 
 
 const Plate_model = (props) => {
@@ -275,7 +276,7 @@ const Plate_model = (props) => {
     </group>
   );
 }
-useGLTF.preload("/plate.glb");
+useGLTF.preload(Plate);
 
 const Logo= () => {
   const refImg = useRef()
@@ -299,10 +300,19 @@ const Logo= () => {
       return () => ctx.revert()
   })
 
+  const Scaling = () => {
+    if (viewport.width > 5.0 )
+      return [viewport.width/4, viewport.width/5, 1]
+    else if (viewport.width > 4.0)
+      return [viewport.width/3, viewport.width/4, 1]
+    else
+      return [viewport.width/2, viewport.width/3, 1]
+  }
+
   return (
     <>
-      <Image ref={refImg} url={logo} position={[0, -3, -2]}
-            scale={(viewport.width) > 4.0 ? [viewport.width/3, viewport.width/4, 1] : [viewport.width/2, viewport.width/3, 1]} />
+      <Image ref={refImg} url={logo} position={[0, -3.5, -2]}
+            scale={Scaling()}/>
     </>
   )
 }
@@ -315,7 +325,6 @@ const Tryout= () => {
 
   useFrame(() => {
     tl.current.progress(scroll.offset * tl.current.duration());
-    console.log(refText.current)
   })
 
   useLayoutEffect(() => {
@@ -330,7 +339,7 @@ const Tryout= () => {
 
   return (
     <>
-      <Text ref={refText} color='black' fontSize={0.15} position={[0, 1.2, 0.5]} font='/src/font/dovemayo.otf' >
+      <Text ref={refText} color='black' fontSize={0.15} position={[0, 1.2, 0.5]} font={Font} >
         검보 한 그릇 하실래요?
         <meshStandardMaterial attach="material" opacity={0} />
       </Text>
@@ -360,7 +369,7 @@ const ScrollIndicator = () => {
   return(
     <>
       <p ref={scrollRef1}
-        className='absolute font-bold sm:text-lg text-md font-dovemayo text-center opacity-1 md:top-[75vh] top-[55vh]'>
+        className='absolute font-bold sm:text-lg text-md font-dovemayo text-center opacity-1 md:top-[70vh] top-[55vh]'>
           Scroll <br /><KeyboardDoubleArrowDownIcon />
       </p>
     </>
@@ -371,15 +380,15 @@ const ScrollIndicator = () => {
 const Experience = () => {
 
   return (
-    <div className='relative justify-center w-full md:h-[150vh] h-[100vh] mx-auto' id='home' >
+    <div className='relative justify-center w-full md:h-[110vh] h-[100vh] mx-auto' id='home' >
     <Canvas frameloop='demand' shadows flat={true}
-          camera={{position: [0, 0.6, 9.5], rotation:[-0.1, 0, 0], fov:45}} className='md:top-0 top-[12%] overflow-hidden'>
+          camera={{position: [0, 1, 9], rotation:[-0.08, 0, 0], fov:45}}>
           <Suspense fallback={null}>
             <directionalLight intensity={1.0} color="white" position={[-5, 15, 10]} />
             <directionalLight intensity={0.95} position={[6.5, 15, 0]} />
             <ambientLight intensity={1.0} />
             {/* <OrbitControls enableZoom={false} /> */}
-            <ScrollControls pages={1.5} damping={0.6} distance={2}>
+            <ScrollControls pages={1.5} damping={0.6} distance={2} style={{ scrollbarColor: "#F7EEE7 #F7EEE7"}} >
               <Sausage_model scale={0.3} position={[0, 0.2, 0]}/>
               <Plate_model position={[0, -3.5, 0]} rotation={[Math.PI/14,0,0]} scale={0.8} />
               <Logo />

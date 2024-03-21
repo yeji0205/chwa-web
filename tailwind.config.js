@@ -12,7 +12,6 @@ module.exports = {
         dimWhite: "rgba(255, 255, 255, 0.8)",
         dimBlue: "rgba(9, 151, 124, 0.1)",
         darkGreen: "#283820",
-        curry:"#8A5B20",
       },
       borderRadius: {
         'lg':'1rem',

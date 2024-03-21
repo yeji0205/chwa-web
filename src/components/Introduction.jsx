@@ -1,13 +1,13 @@
 import React from 'react';
 import Reveal from './utils/Reveal'
 import { motion } from 'framer-motion'
-import chwa from '../assets/chwa.png'
+import chwa from '../assets/logo_eng_kr.png'
 
 const Introduction = () => {
 
 	return (
 		<Reveal>
-		<div className='md:flex w-full h-[50vh] justify-center items-center md:mb-[10%] mb-[50vh] md:px-[10%] px-0' >
+		<div className='md:flex w-full h-[50%] justify-center items-center md:mb-[20%] mb-[50%] md:mt-[1%] md:px-[10%] px-0' >
 			<div className='md:flex md:mt-0 mt-[10%] flex-auto md:justify-end justify-center items-center '
 			>
 				<motion.img src={chwa} alt='주인사진'
@@ -16,7 +16,7 @@ const Introduction = () => {
 					whileInView={{ opacity: 1, scale: 1 }}
 					transition={{
 						duration: 1.0,
-						delay: 0.8,
+						delay: 0.5,
 						ease: [0, 0.71, 0.2, 1.01]
 					}}
 				/>
@@ -30,7 +30,7 @@ const Introduction = () => {
 				whileInView={{
 					opacity: 1,
 					x: 0,
-					transition: { duration: 1, delay: 0.6},
+					transition: { duration: 1, delay: 0.2},
 				}}
 			>
 				<p className='md:text-base leading-loose text-sm font-bold p-5'>

@@ -3,8 +3,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { Navbar, Experience, Introduction, MenuGallery, Review, MyMap, Footer } from './components';
 
 const App = () => (
-  <BrowserRouter>
-    <div className="w-full z-0 bg-skin font-dovemayo">
+  <BrowserRouter >
+    <div className="w-full z-0 bg-skin font-dovemayo"
+          style={{ scrollbarColor: "#F13625 #F7EEE7"}}>
         <Navbar />
         <Experience />
         <Introduction />
