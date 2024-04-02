@@ -9,7 +9,7 @@ const MenuGallery = () => {
 
 	const [ zoom, setZoom ] = useState(false);
 	const [ temImgSrc, setTempImgSrc ] = useState('');
-	const boxStyle = 'rounded-xl p-1 flex flex-col items-center justify-center'
+	// const boxStyle = 'rounded-xl p-1 flex flex-col items-center justify-center'
 
 	const getImg = (imgSrc) => {
 		setTempImgSrc(imgSrc);
@@ -33,12 +33,11 @@ const MenuGallery = () => {
 			</div>
 		<Reveal>
 		<p className='text-xl font-bold text-center mb-[10%]'>메뉴 갤러리 <LocalDiningOutlinedIcon /></p>
-
 				{/* Bento Grid */}
-				<div className='grid md:grid-cols-4 grid-cols-2 auto-rows-[250px] gap-2 mt-[1%]'>
+				<div className='grid md:grid-cols-4 grid-cols-2 auto-rows-[250px] gap-2 mt-[1%] sm:px-[13%] px-[5%] snap-center'>
 					{menus.map((item, index)=> {
 						return(
-							<div className={`${boxStyle}
+							<div className={`rounded-xl p-1 flex flex-col items-center justify-center
 								${index === 0 || index === 9 ? 'sm:col-span-2': ''}
 								${index === 2 ? 'sm:row-span-2': ''}
 								${index === 4 ? 'sm:row-span-2 sm:col-span-2': ''}

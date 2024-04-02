@@ -1,7 +1,10 @@
+/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
-import React, { Suspense, useRef, useLayoutEffect } from 'react';
+import React, { Suspense, useRef, useLayoutEffect, useState, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, useScroll, ScrollControls, Scroll, Image, Text } from '@react-three/drei';
+import Introduction from '../Introduction';
 import logo from '../../assets/logo.svg'
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import Gumbo from '../../assets/gumbo.glb'
@@ -27,6 +30,9 @@ const Sausage_model = (props) => {
   tl.current = gsap.timeline()
 
   useFrame(() => {
+    // 현재 스크롤 위치에 따른 타임라인의 진행률을 계산
+    // 스크롤의 위치에 따라 타임라인의 진행률이 달라지므로,
+    // 각 모델의 애니메이션도 그에 따라 동적으로 변경된다.
     tl.current.progress(scroll.offset * tl.current.duration());
   })
 
@@ -37,20 +43,20 @@ const Sausage_model = (props) => {
     tl.current.to(
       ref.current.position,
       {
-        duration: 2,
+        duration: 1,
         y: -2.3,
       },0);
 
     tl.current.to(
       sausageRef.current.rotation,
       {
-        duration: 2,
+        duration: 1,
         x: -Math.PI / 2,
-      },0.3);
+      },0);
     tl.current.to(
       sausageRef.current.position,
       {
-        duration: 2,
+        duration: 1,
         z: 1,
         x: 3.5,
         y: 3.5,
@@ -65,7 +71,7 @@ const Sausage_model = (props) => {
     tl.current.to(
       shrimpRef_1.current.position,
       {
-        duration: 2,
+        duration: 1,
         z: -0.5,
         x: -1,
         y: -0.5,
@@ -81,7 +87,7 @@ const Sausage_model = (props) => {
       tl.current.to(
         shrimpRef_2.current.position,
         {
-          duration: 2,
+          duration: 1,
           y: 0.5,
           x: 3,
         },0);
@@ -89,7 +95,7 @@ const Sausage_model = (props) => {
       tl.current.to(
         shrimpRef_3.current.rotation,
         {
-          duration: 2,
+          duration: 1,
           x: Math.PI/3
         },0);
       tl.current.to(
@@ -104,7 +110,7 @@ const Sausage_model = (props) => {
       tl.current.to(
         vegRef_1.current.rotation,
         {
-          duration: 2,
+          duration: 1,
           x: -Math.PI /2.5,
           z: Math.PI / 4,
         },0);
@@ -127,7 +133,7 @@ const Sausage_model = (props) => {
       tl.current.to(
         vegRef_2.current.position,
         {
-          duration: 2,
+          duration: 1,
           z: 1.0,
           y: 6.0,
           x: -1
@@ -217,7 +223,7 @@ const Sausage_model = (props) => {
         </group>
     </group>
   );
-}
+};
 useGLTF.preload(Gumbo);
 
 
@@ -275,14 +281,14 @@ const Plate_model = (props) => {
       </mesh>
     </group>
   );
-}
+};
 useGLTF.preload(Plate);
 
 const Logo= () => {
   const refImg = useRef()
   const tl = useRef()
-  const scroll = useScroll()
   tl.current = gsap.timeline()
+  const scroll = useScroll()
   const { viewport } = useThree()
 
   useFrame(() => {
@@ -294,7 +300,7 @@ const Logo= () => {
     let ctx = gsap.context(() =>
     tl.current.to(refImg.current.position,
       {
-        duration: 2,
+        duration: 1.5,
         y: 2.3
       },0))
       return () => ctx.revert()
@@ -318,7 +324,7 @@ const Logo= () => {
 }
 
 const Tryout= () => {
-  const refText = useRef()
+  const refText0 = useRef()
   const tl = useRef()
   const scroll = useScroll()
   tl.current = gsap.timeline()
@@ -328,24 +334,25 @@ const Tryout= () => {
   })
 
   useLayoutEffect(() => {
-    tl.current.to(refText.current.material,
-      {
+    tl.current.to(refText0.current.material, {
         delay: 0.5,
         opacity: 1,
         duration: 1,
-        ease: "power4.inout"
+        ease: "power4.inout",
+        yoyo: true
       })
   })
 
   return (
     <>
-      <Text ref={refText} color='black' fontSize={0.15} position={[0, 1.2, 0.5]} font={Font} >
+      <Text ref={refText0} color='black' fontSize={0.15} position={[0, 1.2, 0.5]} font={Font} >
         검보 한 그릇 하실래요?
         <meshStandardMaterial attach="material" opacity={0} />
       </Text>
     </>
   )
-}
+};
+
 
 const ScrollIndicator = () => {
   const scrollRef1 = useRef()
@@ -377,31 +384,68 @@ const ScrollIndicator = () => {
 }
 
 
-const Experience = () => {
+const ScrollManipulate = ({ setBottom}) => {
+  const scroll = useScroll()
 
-  return (
-    <div className='relative justify-center w-full md:h-[110vh] h-[100vh] mx-auto' id='home' >
-    <Canvas frameloop='demand' shadows flat={true}
-          camera={{position: [0, 1, 9], rotation:[-0.08, 0, 0], fov:45}}>
-          <Suspense fallback={null}>
-            <directionalLight intensity={1.0} color="white" position={[-5, 15, 10]} />
-            <directionalLight intensity={0.95} position={[6.5, 15, 0]} />
-            <ambientLight intensity={1.0} />
-            {/* <OrbitControls enableZoom={false} /> */}
-            <ScrollControls pages={1.5} damping={0.6} distance={2} style={{ scrollbarColor: "#F7EEE7 #F7EEE7"}} >
-              <Sausage_model scale={0.3} position={[0, 0.2, 0]}/>
-              <Plate_model position={[0, -3.5, 0]} rotation={[Math.PI/14,0,0]} scale={0.8} />
-              <Logo />
-              <Tryout />
-              <Scroll html className='flex w-[100%] justify-center'>
-                <ScrollIndicator />
-              </Scroll>
-            </ScrollControls>
-          </Suspense>
-        </Canvas>
-    </div>
-  )
+  useFrame(() => {
+    const scrollLocation = scroll.offset;
+
+    if (scrollLocation > 0.8 ) { setBottom(true); }
+    else if (scrollLocation <= 0.8 ) { setBottom(false);}
+  })
+
+  return null
 }
 
+
+const Experience = () => {
+  const introductionRef = useRef()
+  const [ bottom, setBottom ] = useState(false)
+
+  const scrollTo = () => {
+    introductionRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
+  }
+
+  useLayoutEffect(() => {
+    if (bottom) { scrollTo(); }
+  }, [bottom])
+
+  // Memoize components to avoid re-rendering
+  const MemoSausageModel = useMemo(() => <Sausage_model  scale={0.3} position={[0, 0.2, 0]}/>, []);
+  const MemoPlateModel = useMemo(() => <Plate_model position={[0, -3.5, 0]} rotation={[Math.PI/14,0,0]} scale={0.8}/>, []);
+  const MemoTryout = useMemo(() => <Tryout />, []);
+
+  return (
+    <>
+      <div className='relative z-5 justify-center w-full md:h-[120vh] h-[95vh] mx-auto'
+          id='home'
+      >
+        <Canvas frameloop='demand' shadows flat={true}
+            camera={{position: [0, 1, 9.8], rotation:[-0.1, 0, 0], fov:45}}
+            >
+            <Suspense fallback={null}>
+              <directionalLight intensity={1.0} color="white" position={[-5, 15, 10]} />
+              <directionalLight intensity={0.95} position={[6.5, 15, 0]} />
+              <ambientLight intensity={1.0} />
+              {/* <OrbitControls enableZoom={false} /> */}
+              <ScrollControls pages={1.5} damping={0.6} distance={1} style={{ overflow: "auto", scrollbarColor: "#F7EEE7 #F7EEE7"}} >
+                {MemoSausageModel}
+                {MemoPlateModel}
+                {MemoTryout}
+                <Logo />
+                <Scroll html className='flex w-[100%] justify-center'>
+                  <ScrollIndicator />
+                  <ScrollManipulate setBottom={setBottom} />
+                </Scroll>
+              </ScrollControls>
+            </Suspense>
+          </Canvas>
+      </div>
+      <div ref={introductionRef}>
+        <Introduction />
+      </div>
+    </>
+  )
+}
 
 export default Experience

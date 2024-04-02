@@ -11,17 +11,17 @@ const MyMap = () => {
 
 	return (
 		<Reveal>
-			<div className='py-[15%]' id='how-to-get'>
+			<div className='md:py-[15%] pt-[30%] pb-[5%]' id='how-to-get'>
 				<p className='text-xl text-center font-bold mb-[10%]'>오시는 길 <PlaceIcon /></p>
 				<div className='md:flex flex-none relative justify-cetner'>
-				<div className='md:flex md:w-2/3 w-100vw relative md:ml-[15vw] ml-0 mr-[2%]'>
-				<NavermapsProvider
-					ncpClientId={import.meta.env.VITE_API_MAP_KEY_ID}>
-					<MapContainer />
-				</NavermapsProvider>
-				</div>
+					<div className='md:flex md:w-2/3 w-100vw relative md:ml-[15vw] ml-0 mr-[2%]'>
+					<NavermapsProvider
+						ncpClientId={import.meta.env.VITE_API_MAP_KEY_ID}>
+						<MapContainer />
+					</NavermapsProvider>
+					</div>
 				<div className='md:flex md:w-1/3 md:mr-[15vw] justify-center items-center md:text-base text-md'>
-					<p className='font-bold md:px-0 md:py-0 px-[15%] py-[5%] md:border-0 border-white border-x-8 border-b-8'> 서울 서대문구 증가로32안길 31-9 1층. 증산역 1번 출구에서 277m.<br /><br />
+					<p className='font-bold md:px-0 md:py-0 px-[15%] py-[5%]'> 서울 서대문구 증가로32안길 31-9 1층.<br /> 증산역 1번 출구에서 277m<br /><br />
 					화 - 토 &emsp;12:00 - 21:00 <br /> &emsp;&emsp;&emsp;&emsp;(라스트오더 20:30)<br />
 					일 &emsp;&emsp;&emsp;12:00 - 20:00 <br /> &emsp;&emsp;&emsp;&emsp;(라스트오더 19:30)<br />
 					월 &emsp;&emsp;&emsp;정기휴무 <br />

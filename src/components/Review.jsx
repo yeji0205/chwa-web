@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Reveal from './utils/Reveal';
-import axios from 'axios';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 
@@ -31,15 +30,15 @@ const Review = () => {
 	},[])
 
 	return (
-		<div className='relative py-[15%]' id='review'>
-			<p className='text-xl text-center font-bold mb-[10%]'>블로그 리뷰 <FavoriteOutlinedIcon /></p>
+		<div className='relative md:py-[0%] pt-[30%] pb-[15%] sm:px-[13%] px-[10%]' >
+			<p id='review' className='text-xl text-center font-bold mb-[10%] pt-[15%]'>블로그 리뷰 <FavoriteOutlinedIcon /></p>
 			<Reveal>
 			<div className='grid md:grid-cols-4 grid-cols-2 auto-row-[150px] md:gap-[3rem] gap-[2rem] '>
 					{articles.map((list, index) => (
 						<a key={index} href={list.link} target='_blank'
-						className='text-black border-black border-2 rounded-lg w-auto h-full p-[12%] hover:shadow-[5px_10px_rgba(249,68,73,0.9)] hover:-translate-y-2 hover:border-[rgba(249,68,73,0.9)] hover:border-0.5 flex flex-col  justify-center'>
+						className='md:text-base text-sm text-black border-black border-2 rounded-lg w-auto h-full p-[12%] hover:shadow-[5px_10px_rgba(249,68,73,0.9)] hover:-translate-y-2 hover:border-[rgba(249,68,73,0.9)] hover:border-0.5 flex flex-col  justify-center'>
 							{list.title.replace(/<b>/g, "").replace(/<\/b>/g,"")} <br /><br />
-							<div className='text-md text-right italic'>{list.bloggername.replace(/<b>/g, "").replace(/<\/b>/g,"")}</div>
+							<div className='md:text-sm text-xs text-right italic text-black/60'>{list.bloggername.replace(/<b>/g, "").replace(/<\/b>/g,"")}</div>
 							</a>
 						))}
 			</div>

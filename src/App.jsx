@@ -1,22 +1,21 @@
 /* eslint-disable no-unused-vars */
 import { BrowserRouter } from 'react-router-dom';
 import { Navbar, Experience, Introduction, MenuGallery, Review, MyMap, Footer } from './components';
+import React from 'react';
 
-const App = () => (
+const App = () => {
+  return (
   <BrowserRouter >
-    <div className="w-full z-0 bg-skin font-dovemayo"
-          style={{ scrollbarColor: "#F13625 #F7EEE7"}}>
-        <Navbar />
-        <Experience />
-        <Introduction />
-        <div className= "sm:px-[13%] px-[10%]">
-          <MenuGallery />
-          <Review />
-        </div>
-        <MyMap />
-        <Footer />
+    <div className="relative w-full z-0 font-dovemayo">
+      <Navbar />
+      <Experience />
+      <MenuGallery />
+      <Review />
+      <MyMap />
+      <Footer />
     </div>
   </BrowserRouter>
-);
+  );
+}
 
 export default App

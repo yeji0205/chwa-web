@@ -6,7 +6,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 const Footer = () => {
 
 	return (
-		<footer className='grid sm:grid-cols-2 gap-1 sm:py-[2%] py-[5%] sm:mb-0 mb-[8%] bg-white sm:rounded-t-full justify-center'>
+		<footer className='grid sm:grid-cols-2 gap-1 sm:py-[2%] py-[5%] sm:mb-0 mb-10 bg-white sm:rounded-t-full justify-center'>
 
 			<div className='flex justify-center items-center sm:ml-[20%] '>
 				<p className='font-poppins sm:text-sm text-xs sm:text-left text-center'> <CopyrightIcon style={{fontSize: '1em'}} /> 2024 Chonghwa Park. All rights reserved.<br />
@@ -16,7 +16,7 @@ const Footer = () => {
 				</p>
 			</div>
 
-			<div className='justify-center sm:w-full flex items-center sm:mr-[20%] my-[5%]'>
+			<div className='justify-center sm:w-full flex items-center sm:mr-[20%] my-[6%]'>
 					<p className='text-sm font-poppins text-center'>
 					Follow us &ensp;
 					<InstagramIcon fontSize='medium' sx={{ "&:hover": { color: '#F13625', transition: 'color', cursor: 'pointer'} }} onClick={()=> window.open('https://www.instagram.com/chwa_market')} /> </p>

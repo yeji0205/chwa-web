@@ -17,5 +17,5 @@ export {
 	Footer,
 	CustomCursor,
 	Reveal,
-	Experience
+	Experience,
 };
